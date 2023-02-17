@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ImageOrganizer</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="name_of_list">What is the name of your list?</string>
+    <string name="create_list">Create</string>
+    <string name="input_description">Input description...</string>
+</resources>
