@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.rigosapps.imageorganizer.databinding.ActivityListDetailBinding
 import com.rigosapps.imageorganizer.screens.ListDetailFragment
-import com.rigosapps.imageorganizer.viewModels.ImageItem
+import com.rigosapps.imageorganizer.model.ImageItem
 import com.rigosapps.imageorganizer.viewModels.ListDetailViewModel
 import timber.log.Timber
 
@@ -69,21 +69,19 @@ class ListDetailActivity : AppCompatActivity() {
                 ) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
             ) permissionGranted = true;
 
+        }
 
-        } else
 
 
-            ActivityCompat.requestPermissions(
-                this, arrayOf(
-                    android.Manifest.permission.CAMERA,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
-                ), REQUEST_CAMERA_AND_STORAGE
-            )
+        ActivityCompat.requestPermissions(
+            this, arrayOf(
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ), REQUEST_CAMERA_AND_STORAGE
+        )
 
     }
-
-
 
 
     override fun onRequestPermissionsResult(

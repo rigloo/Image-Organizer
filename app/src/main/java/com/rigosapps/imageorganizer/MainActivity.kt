@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.rigosapps.imageorganizer.databinding.ActivityMainBinding
 import com.rigosapps.imageorganizer.screens.HomeFragment
 import com.rigosapps.imageorganizer.screens.ListDetailFragment
-import com.rigosapps.imageorganizer.viewModels.ImageItem
+import com.rigosapps.imageorganizer.model.ImageItem
 import com.rigosapps.imageorganizer.viewModels.ItemViewModel
 
 
@@ -89,6 +89,9 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+
 
 
     companion object {

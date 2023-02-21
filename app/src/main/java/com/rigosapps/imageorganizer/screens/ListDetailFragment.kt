@@ -16,7 +16,7 @@ import com.rigosapps.imageorganizer.ListDetailActivity
 import com.rigosapps.imageorganizer.MainActivity
 import com.rigosapps.imageorganizer.databinding.ListDetailFragmentBinding
 import com.rigosapps.imageorganizer.helpers.FileHelper
-import com.rigosapps.imageorganizer.viewModels.ImageItem
+import com.rigosapps.imageorganizer.model.ImageItem
 import com.rigosapps.imageorganizer.viewModels.ListDetailViewModel
 import timber.log.Timber
 
@@ -130,6 +130,19 @@ class ListDetailFragment : Fragment() {
             binding.imageViewDetail.visibility = View.VISIBLE
             binding.imageGallery.imageCamera.visibility = View.GONE
             Timber.e("Received image input ${view}")
+        }
+
+        if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
+
+
+            Timber.e("Received image input ${view}")
+            data.let {
+                imageUri = data?.data
+                binding.imageViewDetail.setImageURI(data?.data)
+                binding.imageViewDetail.visibility = View.VISIBLE
+                binding.imageGallery.imageCamera.visibility = View.GONE
+
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package com.rigosapps.imageorganizer.screens
 
+import android.net.LinkAddress
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -9,13 +10,16 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rigosapps.imageorganizer.ItemAdapter
 import com.rigosapps.imageorganizer.MainActivity
 import com.rigosapps.imageorganizer.R
 import com.rigosapps.imageorganizer.databinding.FragmentHomeBinding
+import com.rigosapps.imageorganizer.helpers.FileHelper
 import com.rigosapps.imageorganizer.helpers.TimeHelper
-import com.rigosapps.imageorganizer.viewModels.ImageItem
+import com.rigosapps.imageorganizer.model.ImageItem
 import com.rigosapps.imageorganizer.viewModels.ItemViewModel
+import java.util.*
 
 
 /*
@@ -27,7 +31,6 @@ class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     lateinit var viewModel: ItemViewModel
-
 
 
     companion object {
@@ -51,18 +54,13 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(ItemViewModel::class.java)
 
 
-        val adapter = ItemAdapter(viewModel._itemList, ::onItemClick)
+        val adapter = ItemAdapter(::onItemClick)
         binding.homeList.adapter = adapter
+        binding.homeList.layoutManager = LinearLayoutManager(requireContext())
+        viewModel.readAllData.observe(viewLifecycleOwner){ imageItems ->
+            adapter.setData(imageItems)
 
-
-        viewModel.onListAdded = {
-            adapter.listUpdatedAddition()
         }
-
-        viewModel.onListUpdated = {
-            adapter.listUpdatedUpdate(it)
-        }
-
 
 
 
@@ -96,10 +94,10 @@ class HomeFragment : Fragment() {
 // 3
         builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
             imageItem = ImageItem(
-                java.util.UUID.randomUUID().toString(),
+                0,
                 "null",
                 listTitleEditText.text.toString(),
-                TimeHelper.getCurrentTime(),
+                TimeHelper.getStringfromDate(TimeHelper.getCurrentTime()),
                 ""
             )
 
