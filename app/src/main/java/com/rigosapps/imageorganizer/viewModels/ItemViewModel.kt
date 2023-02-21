@@ -3,15 +3,12 @@ package com.rigosapps.imageorganizer.viewModels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rigosapps.imageorganizer.db.ImageItemDatabase
 import com.rigosapps.imageorganizer.db.ImageItemRepository
 import com.rigosapps.imageorganizer.model.ImageItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -45,7 +42,7 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun updateList(imageItem: ImageItem) {
+    fun updateImageItem(imageItem: ImageItem) {
 
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -54,7 +51,7 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun deleteList(imageItem: ImageItem) {
+    fun deleteImageItem(imageItem: ImageItem) {
 
         viewModelScope.launch(Dispatchers.IO) {
 

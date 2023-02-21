@@ -24,6 +24,7 @@
         >
         <activity
             android:name=".ListDetailActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

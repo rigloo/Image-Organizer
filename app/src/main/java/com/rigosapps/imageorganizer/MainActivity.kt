@@ -12,6 +12,7 @@ import com.rigosapps.imageorganizer.screens.HomeFragment
 import com.rigosapps.imageorganizer.screens.ListDetailFragment
 import com.rigosapps.imageorganizer.model.ImageItem
 import com.rigosapps.imageorganizer.viewModels.ItemViewModel
+import timber.log.Timber
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
-
+        Timber.plant(Timber.DebugTree())
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
@@ -45,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == LIST_DETAIL_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             data?.let {
 
-                viewModel.updateList(data.getParcelableExtra(INTENT_LIST_KEY)!!)
+                viewModel.updateImageItem(data.getParcelableExtra(INTENT_LIST_KEY)!!)
 
             }
         }
@@ -82,16 +82,15 @@ class MainActivity : AppCompatActivity() {
 
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                replace(R.id.list_detail_fragment_container,
-                    ListDetailFragment::class.java, bundle, null)
+                replace(
+                    R.id.list_detail_fragment_container,
+                    ListDetailFragment::class.java, bundle, null
+                )
             }
         }
 
 
     }
-
-
-
 
 
     companion object {

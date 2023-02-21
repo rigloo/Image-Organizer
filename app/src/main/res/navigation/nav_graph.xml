@@ -3,12 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment"
-    >
-
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.rigosapps.imageorganizer.screens.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home" />
+    app:startDestination="@id/mainActivity">
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.rigosapps.imageorganizer.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/listDetailActivity2"
+        android:name="com.rigosapps.imageorganizer.ListDetailActivity"
+        android:label="activity_list_detail"
+        tools:layout="@layout/activity_list_detail" />
 </navigation>

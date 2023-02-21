@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rigosapps.imageorganizer.ItemAdapter
 import com.rigosapps.imageorganizer.MainActivity
 import com.rigosapps.imageorganizer.R
@@ -19,6 +22,7 @@ import com.rigosapps.imageorganizer.helpers.FileHelper
 import com.rigosapps.imageorganizer.helpers.TimeHelper
 import com.rigosapps.imageorganizer.model.ImageItem
 import com.rigosapps.imageorganizer.viewModels.ItemViewModel
+import timber.log.Timber
 import java.util.*
 
 
@@ -57,7 +61,7 @@ class HomeFragment : Fragment() {
         val adapter = ItemAdapter(::onItemClick)
         binding.homeList.adapter = adapter
         binding.homeList.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.readAllData.observe(viewLifecycleOwner){ imageItems ->
+        viewModel.readAllData.observe(viewLifecycleOwner) { imageItems ->
             adapter.setData(imageItems)
 
         }
@@ -69,6 +73,36 @@ class HomeFragment : Fragment() {
             showCreateListDialog()
 
         }
+
+
+        val itemTouchHelperCallback =
+            object :
+                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+
+                    return false
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+                    Timber.e("Getting ItemId ${viewHolder.adapterPosition}")
+
+                    viewModel.deleteImageItem(adapter.getItembyPosition(viewHolder.adapterPosition))
+                    Toast.makeText(
+                        requireActivity(),
+                        "Deleted",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(binding.homeList)
 
         return binding.root
     }

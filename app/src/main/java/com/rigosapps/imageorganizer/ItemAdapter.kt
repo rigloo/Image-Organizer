@@ -39,6 +39,11 @@ class ItemAdapter(val onClick: (imageItem: ImageItem) -> Unit) :
         return ViewHolder(view)
     }
 
+    fun getItembyPosition(index: Int): ImageItem{
+
+        return items[index]
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.titleText.text = items[position].title
         holder.date.text = items[position].date
@@ -58,7 +63,6 @@ class ItemAdapter(val onClick: (imageItem: ImageItem) -> Unit) :
     }
 
     override fun getItemCount(): Int {
-//        return items.size
         return items.size
     }
 
