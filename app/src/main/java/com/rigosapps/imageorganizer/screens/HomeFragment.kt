@@ -107,9 +107,9 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    fun onItemClick(imageItem: ImageItem) {
+    fun onItemClick(id: Long) {
 
-        (activity as MainActivity?)!!.showListDetail(imageItem)
+        (activity as MainActivity?)!!.showListDetail(id)
     }
 
     private fun showCreateListDialog() {
@@ -135,11 +135,11 @@ class HomeFragment : Fragment() {
                 ""
             )
 
-            viewModel.addItem(
+           val id = viewModel.addItem(
                 imageItem
             )
             dialog.dismiss()
-            (activity as MainActivity?)!!.showListDetail(imageItem)
+            (activity as MainActivity?)!!.showListDetail(id)
         }
 // 4
         builder.create().show()

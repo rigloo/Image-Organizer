@@ -12,7 +12,7 @@ import com.rigosapps.imageorganizer.helpers.TimeHelper
 import com.rigosapps.imageorganizer.model.ImageItem
 import timber.log.Timber
 
-class ItemAdapter(val onClick: (imageItem: ImageItem) -> Unit) :
+class ItemAdapter(val onClick: (id: Long) -> Unit) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     private var items = emptyList<ImageItem>()
 
@@ -55,7 +55,7 @@ class ItemAdapter(val onClick: (imageItem: ImageItem) -> Unit) :
 
 
             Timber.e("Navigate from home to Detail.")
-            onClick(items[position])
+            onClick(items[position].key)
 
 
         }

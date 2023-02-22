@@ -8,14 +8,14 @@ import com.rigosapps.imageorganizer.db.ImageItemDatabase
 import com.rigosapps.imageorganizer.db.ImageItemRepository
 import com.rigosapps.imageorganizer.model.ImageItem
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import timber.log.Timber
+import java.io.FileOutputStream
 
 class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var onListAdded: (() -> Unit)
-    lateinit var onListUpdated: ((Int) -> Unit)
-
-    val _itemList = mutableListOf<ImageItem>()
 
     val readAllData: LiveData<List<ImageItem>>
     private val repository: ImageItemRepository
@@ -30,17 +30,25 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun addItem(imageItem: ImageItem) {
-//        _itemList.add(imageItem)
-//        onListAdded.invoke()
+    fun addItem(imageItem: ImageItem): Long {
+        var id: Long = -1
 
-        viewModelScope.launch(Dispatchers.IO) {
 
-            repository.addImageItem(imageItem)
+        val job = viewModelScope.async(Dispatchers.IO) {
+
+            id = repository.addImageItem(imageItem)
+
         }
+
+        runBlocking {
+            job.join()
+        }
+        Timber.e("New id $id")
+        return id!!
 
 
     }
+
 
     fun updateImageItem(imageItem: ImageItem) {
 
@@ -57,6 +65,23 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
             repository.deleteImageItem(imageItem)
         }
+
+
+    }
+
+    fun getImageItem(id: Long): ImageItem {
+        lateinit var imageItem: ImageItem
+        val job = viewModelScope.launch(Dispatchers.IO) {
+
+            imageItem = repository.getImageItem(id)
+        }
+
+        runBlocking {
+            job.join()
+        }
+
+        return imageItem
+
 
     }
 

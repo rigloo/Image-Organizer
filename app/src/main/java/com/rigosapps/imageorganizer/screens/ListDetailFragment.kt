@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,10 @@ import com.rigosapps.imageorganizer.model.ImageItem
 import com.rigosapps.imageorganizer.viewModels.ListDetailViewModel
 import timber.log.Timber
 
+/*
+The fragment responsible for showing the detail of the Image entry when clicked from the recycler view of the HomeFragment.
+Let's you add an image (from camera or gallery) and edit the description.
+ */
 
 class ListDetailFragment : Fragment() {
     private var imageUri: Uri? = null
@@ -38,6 +43,7 @@ class ListDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ListDetailViewModel::class.java)
 
+        //code if using larger configurations, would just use as fragments
         val imageItem: ImageItem? = arguments?.getParcelable(MainActivity.INTENT_LIST_KEY)
         if (imageItem != null) {
             viewModel.imageItem = imageItem
@@ -60,6 +66,7 @@ class ListDetailFragment : Fragment() {
             if (imageUri == null) {
 
             } else {
+                Timber.e("Image URI is ${imageUri!!.path}")
                 val bitmap =
                     MediaStore.Images.Media.getBitmap(activity?.contentResolver, imageUri!!)
                 val path =
@@ -130,6 +137,12 @@ class ListDetailFragment : Fragment() {
             binding.imageViewDetail.visibility = View.VISIBLE
             binding.imageGallery.imageCamera.visibility = View.GONE
             Timber.e("Received image input ${view}")
+        }
+
+        else if (requestCode == IMAGE_CAPTURE_CODE && resultCode == Activity.RESULT_CANCELED) {
+
+
+           imageUri = null
         }
 
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {

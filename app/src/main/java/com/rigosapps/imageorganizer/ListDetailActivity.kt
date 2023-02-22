@@ -10,10 +10,11 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rigosapps.imageorganizer.databinding.ActivityListDetailBinding
 import com.rigosapps.imageorganizer.screens.ListDetailFragment
-import com.rigosapps.imageorganizer.model.ImageItem
+import com.rigosapps.imageorganizer.viewModels.ItemViewModel
 import com.rigosapps.imageorganizer.viewModels.ListDetailViewModel
 import timber.log.Timber
 
@@ -21,7 +22,9 @@ import timber.log.Timber
 class ListDetailActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityListDetailBinding
-    lateinit var viewModel: ListDetailViewModel
+    lateinit var viewModelDetail: ListDetailViewModel
+    lateinit var viewModelMain: ItemViewModel
+
 
     var permissionGranted = false
 
@@ -46,18 +49,23 @@ class ListDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get(ListDetailViewModel::class.java)
+        viewModelDetail = ViewModelProvider(this).get(ListDetailViewModel::class.java)
+        viewModelMain = ViewModelProvider(this).get(ItemViewModel::class.java)
 
 
-        val imageItem = if (Build.VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY, ImageItem::class.java)
-        } else {
-            intent.getParcelableExtra<ImageItem>(MainActivity.INTENT_LIST_KEY)
-        }
+//        val id = if (Build.VERSION.SDK_INT >= 33) {
+//            intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY,Long)
+//        } else {
+//            intent.getParcelableExtra<Long>(MainActivity.INTENT_LIST_KEY)
+//        }
+        val bdl = intent.extras
+        val id = bdl!!.getLong(MainActivity.INTENT_LIST_KEY)
 
-        viewModel.imageItem = imageItem!!
+        viewModelDetail.imageItem = viewModelMain.getImageItem(id)
 
-        setTitle(viewModel.imageItem.title)
+
+
+        setTitle(viewModelDetail.imageItem.title)
         requestPermissions()
 
         if (savedInstanceState == null) {
@@ -130,7 +138,7 @@ class ListDetailActivity : AppCompatActivity() {
         Timber.e("OnBackPressed")
         val bundle = Bundle()
         bundle.putParcelable(
-            MainActivity.INTENT_LIST_KEY, viewModel.imageItem
+            MainActivity.INTENT_LIST_KEY, viewModelDetail.imageItem
         )
         val intent = Intent()
         intent.putExtras(bundle)

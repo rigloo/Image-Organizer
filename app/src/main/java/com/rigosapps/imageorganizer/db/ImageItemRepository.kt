@@ -7,8 +7,8 @@ class ImageItemRepository(private val imageItemDao: ImageItemDao) {
 
     val readAllData: LiveData<List<ImageItem>> = imageItemDao.loadAll()
 
-    suspend fun addImageItem(imageItem: ImageItem) {
-        imageItemDao.insertImageItem(imageItem)
+    suspend fun addImageItem(imageItem: ImageItem): Long {
+        return imageItemDao.insertImageItem(imageItem)
     }
 
     suspend fun updateImageItem(imageItem: ImageItem) {
@@ -17,5 +17,9 @@ class ImageItemRepository(private val imageItemDao: ImageItemDao) {
 
     suspend fun deleteImageItem(imageItem: ImageItem) {
         imageItemDao.deleteImageItem(imageItem)
+    }
+
+    suspend fun getImageItem(id: Long): ImageItem {
+        return imageItemDao.loadImageItem(id)
     }
 }

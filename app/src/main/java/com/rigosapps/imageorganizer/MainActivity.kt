@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public fun showListDetail(imageItem: ImageItem) {
+    public fun showListDetail(id: Long) {
 
         //using normal layout
         if (binding.mainFragmentContainer == null) {
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 this,
                 ListDetailActivity::class.java
             )
-            listDetailIntent.putExtra(INTENT_LIST_KEY, imageItem)
+            listDetailIntent.putExtra(INTENT_LIST_KEY, id)
             startActivityForResult(
                 listDetailIntent,
                 LIST_DETAIL_REQUEST_CODE
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
         //using the larger layout
         else {
-            val bundle = bundleOf(INTENT_LIST_KEY to imageItem)
+            val bundle = bundleOf(INTENT_LIST_KEY to id)
             val frag = ListDetailFragment()
 
 
