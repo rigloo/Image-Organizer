@@ -5,4 +5,7 @@ Keeps track of the folders pertaining to those images. Stores the Image entry in
 
 Screenshots below:
 
-![Screenshot_1677189973](https://user-images.githubusercontent.com/23559160/221044016-f3c92ba3-3554-402d-ac04-a3c53eb85e6d.png)![Screenshot_1677189985](https://user-ima![Screenshot_1677189993](https://user-images.githubusercontent.com/23559160/221044037-b0814b47-10e1-49cf-abc2-b516a59e4547.png)
+![Screenshot_1677189973](https://user-images.githubusercontent.com/23559160/221044087-2e166801-6838-442c-8414-16a9e46a525b.png)
+![Screenshot_1677189985](https://user-images.githubusercontent.com/23559160/221044094-101df02c-6618-40d2-b52b-50f7dc76c887.png)
+![Screenshot_1677189991](https://user-images.githubusercontent.com/23559160/221044104-ecb0a163-177e-43c2-aac4-9b579041a548.png)
+![Screenshot_1677189993](https://user-images.githubusercontent.com/23559160/221044118-d85600b7-8612-4842-b37c-e6ed869f458c.png)
