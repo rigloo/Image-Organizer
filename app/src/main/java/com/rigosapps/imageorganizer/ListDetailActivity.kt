@@ -52,12 +52,6 @@ class ListDetailActivity : AppCompatActivity() {
         viewModelDetail = ViewModelProvider(this).get(ListDetailViewModel::class.java)
         viewModelMain = ViewModelProvider(this).get(ItemViewModel::class.java)
 
-
-//        val id = if (Build.VERSION.SDK_INT >= 33) {
-//            intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY,Long)
-//        } else {
-//            intent.getParcelableExtra<Long>(MainActivity.INTENT_LIST_KEY)
-//        }
         val bdl = intent.extras
         val id = bdl!!.getLong(MainActivity.INTENT_LIST_KEY)
 

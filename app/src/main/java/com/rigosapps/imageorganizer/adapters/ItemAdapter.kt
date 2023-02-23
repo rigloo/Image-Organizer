@@ -1,4 +1,4 @@
-package com.rigosapps.imageorganizer
+package com.rigosapps.imageorganizer.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
-import com.rigosapps.imageorganizer.helpers.TimeHelper
+import com.rigosapps.imageorganizer.R
 import com.rigosapps.imageorganizer.model.ImageItem
 import timber.log.Timber
 

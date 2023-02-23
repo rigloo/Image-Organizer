@@ -6,4 +6,9 @@
     <string name="name_of_list">What is the name of your list?</string>
     <string name="create_list">Create</string>
     <string name="input_description">Input description...</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="name_of_folder">What is the name of your folder?</string>
+
+
 </resources>

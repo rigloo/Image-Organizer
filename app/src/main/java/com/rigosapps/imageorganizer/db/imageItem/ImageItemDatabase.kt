@@ -1,4 +1,4 @@
-package com.rigosapps.imageorganizer.db
+package com.rigosapps.imageorganizer.db.imageItem
 
 import android.content.Context
 import androidx.room.Database

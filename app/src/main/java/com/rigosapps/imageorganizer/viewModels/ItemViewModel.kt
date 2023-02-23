@@ -4,15 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.rigosapps.imageorganizer.db.ImageItemDatabase
-import com.rigosapps.imageorganizer.db.ImageItemRepository
+import com.rigosapps.imageorganizer.db.imageItem.ImageItemDatabase
+import com.rigosapps.imageorganizer.db.imageItem.ImageItemRepository
 import com.rigosapps.imageorganizer.model.ImageItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
-import java.io.FileOutputStream
 
 class ItemViewModel(application: Application) : AndroidViewModel(application) {
 

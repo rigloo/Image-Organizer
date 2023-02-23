@@ -1,6 +1,5 @@
 package com.rigosapps.imageorganizer.screens
 
-import android.net.LinkAddress
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -14,16 +13,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rigosapps.imageorganizer.ItemAdapter
+import com.rigosapps.imageorganizer.adapters.ItemAdapter
 import com.rigosapps.imageorganizer.MainActivity
 import com.rigosapps.imageorganizer.R
 import com.rigosapps.imageorganizer.databinding.FragmentHomeBinding
-import com.rigosapps.imageorganizer.helpers.FileHelper
 import com.rigosapps.imageorganizer.helpers.TimeHelper
 import com.rigosapps.imageorganizer.model.ImageItem
 import com.rigosapps.imageorganizer.viewModels.ItemViewModel
 import timber.log.Timber
-import java.util.*
 
 
 /*

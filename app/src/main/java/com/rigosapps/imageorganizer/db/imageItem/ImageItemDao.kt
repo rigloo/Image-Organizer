@@ -1,4 +1,4 @@
-package com.rigosapps.imageorganizer.db
+package com.rigosapps.imageorganizer.db.imageItem
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

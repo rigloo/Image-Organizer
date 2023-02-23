@@ -10,6 +10,10 @@
     <color name="lightColor">#EEEEEE</color>
     <color name="darkColor">#222831</color>
     <color name="notSoDark">#393E46</color>
+    <color name="blue_theme">#00ADB5</color>
+
+
+
 
 
 </resources>
