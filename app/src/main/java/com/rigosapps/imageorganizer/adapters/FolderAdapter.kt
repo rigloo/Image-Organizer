@@ -9,7 +9,6 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.rigosapps.imageorganizer.R
 import com.rigosapps.imageorganizer.model.Folder
-import com.rigosapps.imageorganizer.model.ImageItem
 import timber.log.Timber
 
 class FolderAdapter(val onClick: (id: Long) -> Unit) :
@@ -42,6 +41,7 @@ class FolderAdapter(val onClick: (id: Long) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.titleText.text = folders[position].folderName
 
 
@@ -55,9 +55,10 @@ class FolderAdapter(val onClick: (id: Long) -> Unit) :
 
         holder.deleteButton.setOnClickListener {
 
-        }
 
+        }
     }
+
 
     override fun getItemCount(): Int {
         return folders.size
@@ -69,4 +70,5 @@ class FolderAdapter(val onClick: (id: Long) -> Unit) :
         notifyDataSetChanged()
 
     }
+
 }
