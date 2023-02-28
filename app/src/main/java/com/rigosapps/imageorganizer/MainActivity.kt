@@ -73,8 +73,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
+        if (itemViewModel.currentFolderId.toInt() == -1)
             setTitle("All")
+        else
+            setTitle(folderViewModel.getFolder(itemViewModel.currentFolderId).folderName)
 
 
         val drawerLayout = binding.myDrawerLayout
