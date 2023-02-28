@@ -20,6 +20,8 @@ interface FolderDao {
     @Update(onConflict = OnConflictStrategy.IGNORE)
     fun updateFolder(folder: Folder)
 
+
+
     @Delete
     fun deleteFolder(folder: Folder)
 

@@ -29,7 +29,7 @@ class FolderViewModel(application: Application) : AndroidViewModel(application) 
     }
 
 
-    fun addItem(folder: Folder): Long {
+    fun addFolder(folder: Folder): Long {
         var id: Long = -1
 
 
@@ -49,7 +49,11 @@ class FolderViewModel(application: Application) : AndroidViewModel(application) 
     }
 
 
-    fun updateImageItem(folder: Folder) {
+
+
+
+
+    fun updateFolder(folder: Folder) {
 
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -58,7 +62,7 @@ class FolderViewModel(application: Application) : AndroidViewModel(application) 
 
     }
 
-    fun deleteImageItem(imageItem: Folder) {
+    fun deleteFolder(imageItem: Folder) {
 
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -68,7 +72,7 @@ class FolderViewModel(application: Application) : AndroidViewModel(application) 
 
     }
 
-    fun getImageItem(id: Long): Folder {
+    fun getFolder(id: Long): Folder {
         lateinit var folder: Folder
         val job = viewModelScope.launch(Dispatchers.IO) {
 

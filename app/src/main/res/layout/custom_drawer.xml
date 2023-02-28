@@ -20,7 +20,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
 
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -28,6 +28,7 @@
 
     <TextView
         android:id="@+id/all_button"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Folders"
@@ -40,21 +41,25 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/folderList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_folder_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+        app:layout_constraintTop_toBottomOf="@+id/all_card" />
 
     <Button
         android:id="@+id/add_folder_button"
         android:layout_width="126dp"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/blue_theme"
         android:text="Add Folder"
         android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/folderList"
         tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
@@ -63,6 +68,7 @@
         android:id="@+id/divider2"
         android:layout_width="409dp"
         android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/add_folder_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,9 +76,16 @@
         app:layout_constraintTop_toBottomOf="@+id/folderList" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
+        android:id="@+id/all_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+
+        android:layout_marginTop="8dp"
+        app:cardElevation="2sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/all_button">
 
         <TextView

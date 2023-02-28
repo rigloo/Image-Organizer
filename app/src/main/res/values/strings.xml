@@ -3,12 +3,18 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="name_of_list">What is the name of your list?</string>
+    <string name="name_of_list">What is the name of your image entry?</string>
     <string name="create_list">Create</string>
     <string name="input_description">Input description...</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="name_of_folder">What is the name of your folder?</string>
+    <string name="delete_confirm">Delete this folder? (Note it\'s contents will be gone forever.)</string>
+    <string name="yes_delete">Yes</string>
+    <string name="no_delete">No</string>
+
+
+
 
 
 </resources>

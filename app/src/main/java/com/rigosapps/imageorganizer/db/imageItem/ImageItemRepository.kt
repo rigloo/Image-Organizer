@@ -22,4 +22,12 @@ class ImageItemRepository(private val imageItemDao: ImageItemDao) {
     suspend fun getImageItem(id: Long): ImageItem {
         return imageItemDao.loadImageItem(id)
     }
+
+    suspend fun getImagesByFolder(id: Long): LiveData<List<ImageItem>> {
+        return imageItemDao.getImageItemsByFolder(id)
+    }
+
+    suspend fun deleteImagesByFolder(folderId: Long) {
+        imageItemDao.deleteByFolderId(folderId)
+    }
 }

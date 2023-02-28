@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rigosapps.imageorganizer.adapters.ItemAdapter
 import com.rigosapps.imageorganizer.MainActivity
 import com.rigosapps.imageorganizer.R
+import com.rigosapps.imageorganizer.adapters.ItemAdapter
 import com.rigosapps.imageorganizer.databinding.FragmentHomeBinding
 import com.rigosapps.imageorganizer.helpers.TimeHelper
 import com.rigosapps.imageorganizer.model.ImageItem
@@ -31,7 +31,7 @@ information and displays it using a RecyclerView list
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
-    lateinit var viewModel: ItemViewModel
+    lateinit var itemViewModel: ItemViewModel
 
 
     companion object {
@@ -52,14 +52,17 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 
-        viewModel = ViewModelProvider(requireActivity()).get(ItemViewModel::class.java)
+        itemViewModel = ViewModelProvider(requireActivity()).get(ItemViewModel::class.java)
+
+//        val args = arguments
+//        val index = args!!.getLong(MainActivity.FOLDER_ID, -)
 
 
-        val adapter = ItemAdapter(::onItemClick)
-        binding.homeList.adapter = adapter
+        val itemAdapter = ItemAdapter(::onItemClick)
+        binding.homeList.adapter = itemAdapter
         binding.homeList.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.readAllData.observe(viewLifecycleOwner) { imageItems ->
-            adapter.setData(imageItems)
+        itemViewModel.readData.observe(viewLifecycleOwner) { imageItems ->
+            itemAdapter.setData(imageItems)
 
         }
 
@@ -88,7 +91,7 @@ class HomeFragment : Fragment() {
 
                     Timber.e("Getting ItemId ${viewHolder.adapterPosition}")
 
-                    viewModel.deleteImageItem(adapter.getItembyPosition(viewHolder.adapterPosition))
+                    itemViewModel.deleteImageItem(itemAdapter.getItembyPosition(viewHolder.adapterPosition))
                     Toast.makeText(
                         requireActivity(),
                         "Deleted",
@@ -129,10 +132,11 @@ class HomeFragment : Fragment() {
                 "null",
                 listTitleEditText.text.toString(),
                 TimeHelper.getStringfromDate(TimeHelper.getCurrentTime()),
-                ""
+                "",
+                itemViewModel.currentFolderId
             )
 
-           val id = viewModel.addItem(
+            val id = itemViewModel.addItem(
                 imageItem
             )
             dialog.dismiss()

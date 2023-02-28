@@ -24,7 +24,10 @@ data class ImageItem(
     val date: String,
 
     @ColumnInfo(name = "description")
-    var description: String
+    var description: String,
+
+    @ColumnInfo(name = "folderId")
+    var folderId: Long
 ) :
     Parcelable {
 
@@ -33,7 +36,8 @@ data class ImageItem(
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
-        source.readString()!!
+        source.readString()!!,
+        source.readLong()
 
     )
 
@@ -47,6 +51,9 @@ data class ImageItem(
         parcel.writeString(title)
         parcel.writeString(date)
         parcel.writeString(description)
+        parcel.writeLong(
+            folderId
+        )
     }
 
     override fun describeContents(): Int {

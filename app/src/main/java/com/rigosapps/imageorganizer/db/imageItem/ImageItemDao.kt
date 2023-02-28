@@ -13,6 +13,9 @@ interface ImageItemDao {
     @Query("SELECT * FROM ImageItem WHERE key = :imageItemId")
     fun loadImageItem(imageItemId: Long): ImageItem
 
+    @Query("SELECT * FROM ImageItem WHERE folderId = :folderId")
+    fun getImageItemsByFolder(folderId: Long): LiveData<List<ImageItem>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertImageItem(imageItem: ImageItem): Long
 
@@ -21,5 +24,10 @@ interface ImageItemDao {
 
     @Delete
     fun deleteImageItem(imageItem: ImageItem)
+
+    @Query("DELETE FROM ImageItem WHERE folderId = :folderId")
+    fun deleteByFolderId(folderId: Long)
+
+
 
 }

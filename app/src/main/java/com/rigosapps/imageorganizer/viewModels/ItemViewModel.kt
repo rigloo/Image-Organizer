@@ -16,15 +16,20 @@ import timber.log.Timber
 class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    val readAllData: LiveData<List<ImageItem>>
+    var readData: LiveData<List<ImageItem>>
     private val repository: ImageItemRepository
+
+    //lateinit var dataByFolder: LiveData<List<ImageItem>>
+    var currentFolderId: Long
 
 
     init {
 
         val imageItemDao = ImageItemDatabase.getInstance(application).imageItemDao()
         repository = ImageItemRepository(imageItemDao)
-        readAllData = repository.readAllData
+        readData = repository.readAllData
+
+        currentFolderId = -1
 
     }
 
@@ -48,6 +53,32 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    fun getAllData() {
+
+
+        currentFolderId = -1
+        readData = repository.readAllData
+        Timber.e("Got all data with values ${readData.value}")
+
+    }
+
+    fun getEntriesByFolder(folderId: Long) {
+        currentFolderId = folderId
+
+        val job = viewModelScope.async(Dispatchers.IO) {
+
+            readData = repository.getImagesByFolder(folderId)
+
+        }
+        runBlocking {
+            job.join()
+        }
+
+        Timber.e("Got all data with folder $folderId and value ${readData.value}")
+
+
+    }
+
 
     fun updateImageItem(imageItem: ImageItem) {
 
@@ -63,6 +94,16 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
 
             repository.deleteImageItem(imageItem)
+        }
+
+
+    }
+
+    fun deleteImageItemByFolder(folderId: Long) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            repository.deleteImagesByFolder(folderId)
         }
 
 
