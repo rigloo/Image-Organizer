@@ -13,6 +13,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 
+/*
+
+The view mode
+ */
+
 class FolderViewModel(application: Application) : AndroidViewModel(application) {
 
 

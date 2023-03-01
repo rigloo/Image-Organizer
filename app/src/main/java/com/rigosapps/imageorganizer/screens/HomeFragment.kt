@@ -45,6 +45,8 @@ class HomeFragment : Fragment() {
 
     }
 
+
+    //set the binding, get the ItemViewModel (same one from MainActivity)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -67,7 +69,7 @@ class HomeFragment : Fragment() {
         }
 
 
-
+        //Set a listener whenever you click the Add button on the bottom right.
         binding.floatingActionButton.setOnClickListener() {
 
             showCreateListDialog()
@@ -112,6 +114,7 @@ class HomeFragment : Fragment() {
         (activity as MainActivity?)!!.showListDetail(id)
     }
 
+    //Show a dialog to create a image entry, then navigate to the DetailActivity
     private fun showCreateListDialog() {
         // 1
         val dialogTitle = getString(R.string.name_of_list)

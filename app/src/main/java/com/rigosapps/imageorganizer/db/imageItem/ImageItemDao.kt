@@ -4,6 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.rigosapps.imageorganizer.model.ImageItem
 
+/*
+
+The DAO for the ImageItem database. Provides methods to access , write, update and delete from the ImageItem db.
+ */
+
 @Dao
 interface ImageItemDao {
 

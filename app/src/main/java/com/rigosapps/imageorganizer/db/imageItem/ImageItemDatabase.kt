@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase
 import com.rigosapps.imageorganizer.model.ImageItem
 
 
+
+
 // 1
 @Database(entities = [ImageItem::class], version = 1, exportSchema = false)
 abstract class ImageItemDatabase : RoomDatabase() {

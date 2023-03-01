@@ -11,6 +11,15 @@ import java.io.*
 import java.util.*
 
 
+/*
+
+Folder class to assist in reading and writing to local storage. I thought it made sense to extract all this
+logic and put it on its seperate class in order to make it clearer. This class uses compressed bitmaps to write to internal
+storage. The room DB ImageItem stores the path where the image is stored and it is retrieved using the loadImageFromStorage
+method.
+
+ */
+
 class FileHelper {
 
     companion object {
